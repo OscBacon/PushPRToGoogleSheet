@@ -5,7 +5,7 @@ This is an AWS Lambda function to log pull request creation to Google Sheets.
 ### 1. Setup Google Sheets API
 In order to edit a Google Sheet, you need to create a Google Sheet and note its id.
 
-You must then enable the Google Sheets API. To do so, go to the [Google Cloud Console](https://console.cloud.google.com/apis/dashboard)
+You must then enable the Google Sheets API. To do so, go to the [Google Cloud Console](https://console.cloud.google.com/apis/dashboard).
 
 To obtain an authenticaiton key that doesn't expire, create a service account for the function to use. Save the service account credentials as `credentials.json`
 
