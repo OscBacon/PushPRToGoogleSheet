@@ -10,7 +10,6 @@ CREDENTIALS = ServiceAccountCredentials.from_json_keyfile_name(
     SERVICE_ACCOUNT_FILE, scopes=SCOPES)
 SPREADSHEET_ID = os.environ["SPREADSHEET_ID"]
 SLACK_API_TOKEN = os.environ["SLACK_API_TOKEN"]
-SC = SlackClient(SLACK_API_TOKEN)
 
 
 def lambda_handler(event, context):
@@ -64,12 +63,11 @@ def lambda_handler(event, context):
     sheet_url = "https://docs.google.com/spreadsheets/d/{}".format(
         SPREADSHEET_ID)
 
-    SC.api_call(
-        "chat.postMessage",
-        channel="backteam",
-        text="<{}|New PR Created> \n <{}|{}> by {}".format(
-            sheet_url, url, title, user)
-    )
-
-
-lambda_handler({}, {})
+    sc = SlackClient(SLACK_API_TOKEN)
+    if sc:
+        sc.api_call(
+            "chat.postMessage",
+            channel="backteam",
+            text="<{}|New PR Created> \n <{}|{}> by {}".format(
+                sheet_url, url, title, user)
+        )
